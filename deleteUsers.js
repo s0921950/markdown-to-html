@@ -62,6 +62,23 @@ MongoClient.connect(url, function(err, db) {
             "score" : 1495731011853.0
         };
         collection.removeOne({"_key" : "group:registered-users:members", "value" : uidString});
+
+        var main_category = 16;
+        collection.removeOne({"_key" : "group:cid:" + category + ":privileges:find:members", "value" : uidString});
+        collection.removeOne({"_key" : "group:cid:" + category + ":privileges:read:members", "value" : uidString});
+
+        var category = 51;
+        var find = {
+            "_key" : "group:cid:" + category + ":privileges:find:members",
+            "value" : "100001",
+            "score" : 1497016492117.0
+        };
+        collection.removeOne({"_key" : "group:cid:" + category + ":privileges:find:members", "value" : uidString});
+        collection.removeOne({"_key" : "group:cid:" + category + ":privileges:read:members", "value" : uidString});
+        collection.removeOne({"_key" : "group:cid:" + category + ":privileges:topics:read:members", "value" : uidString});
+        collection.removeOne({"_key" : "group:cid:" + category + ":privileges:topics:create:members", "value" : uidString});
+        collection.removeOne({"_key" : "group:cid:" + category + ":privileges:topics:delete:members", "value" : uidString});
+        collection.removeOne({"_key" : "group:cid:" + category + ":privileges:purge:members", "value" : uidString});
     }
 
     db.close();

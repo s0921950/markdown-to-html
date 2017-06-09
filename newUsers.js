@@ -91,8 +91,65 @@ MongoClient.connect(url, function(err, db) {
             "score" : 1495731011853.0
         };
         collection.insert(group);
+
+        var main_category = 16;
+        var main_find = {
+            "_key" : "group:cid:" + category + ":privileges:find:members",
+            "value" : uidString,
+            "score" : 1497016492117.0
+        };
+        collection.insert(main_find);
+
+        var main_read = {
+            "_key" : "group:cid:" + category + ":privileges:read:members",
+            "value" : uidString,
+            "score" : 1497016492117.0
+        };
+        collection.insert(main_read);
+
+        var category = 51;
+        var find = {
+            "_key" : "group:cid:" + category + ":privileges:find:members",
+            "value" : uidString,
+            "score" : 1497016492117.0
+        };
+        collection.insert(find);
+
+        var read = {
+            "_key" : "group:cid:" + category + ":privileges:read:members",
+            "value" : uidString,
+            "score" : 1497016492117.0
+        };
+        collection.insert(read);
+
+        var topic_read = {
+            "_key" : "group:cid:" + category + ":privileges:topics:read:members",
+            "value" : uidString,
+            "score" : 1497016492117.0
+        };
+        collection.insert(topic_read);
+
+        var topic_create = {
+            "_key" : "group:cid:" + category + ":privileges:topics:create:members",
+            "value" : uidString,
+            "score" : 1497016492117.0
+        };
+        collection.insert(topic_create);
+
+        var topic_delete = {
+            "_key" : "group:cid:" + category + ":privileges:topics:delete:members",
+            "value" : uidString,
+            "score" : 1497016492117.0
+        };
+        collection.insert(topic_delete);
+
+        var purge = {
+            "_key" : "group:cid:" + category + ":privileges:purge:members",
+            "value" : uidString,
+            "score" : 1497016492117.0
+        };
+        collection.insert(purge);
     }
-        
 
     db.close();
 });
