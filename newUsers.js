@@ -12,7 +12,7 @@ MongoClient.connect(url, function(err, db) {
     var contents, id;
     var collection = db.collection(collectionName);
 
-    for (var i = 1; i <= 200; i++) {
+    for (var i = 1; i <= 100; i++) {
 
         var uid  = 100000 + i;
         var _key = "user:" + uid;
@@ -22,7 +22,7 @@ MongoClient.connect(url, function(err, db) {
             "_key" : _key,
             "username" : username,
             "userslug" : username,
-            "email" : "",
+            "email" : "adam.yh.dong@gmail.com" + uid,
             "joindate" : 1490613520594.0,
             "lastonline" : 1495531828909.0,
             "picture" : "",
@@ -41,8 +41,7 @@ MongoClient.connect(url, function(err, db) {
             "status" : "online",
             "uid" : uid,
             "password" : "$2a$12$6WIg2WaKmUNLHU.cA/tkSewhQ0TXZcGtWdzpkiK.74R2/dHfSGIOK",
-            "passwordExpiry" : 0,
-            "groupTitle" : ""
+            "passwordExpiry" : 0
         };
         collection.insert(user);
 
@@ -70,12 +69,12 @@ MongoClient.connect(url, function(err, db) {
         };
         collection.insert(userslug);
 
-        var members  = {
-            "_key" : "group:registered-users:members",
-            "value" : uid,
-            "score" : 1495731105284.0
-        };
-        collection.insert(members);
+        // var members  = {
+        //     "_key" : "group:registered-users:members",
+        //     "value" : uid,
+        //     "score" : 1495731105284.0
+        // };
+        // collection.insert(members);
 
 
         var joindate  = {
@@ -84,6 +83,14 @@ MongoClient.connect(url, function(err, db) {
             "score" : 1495731011853.0
         };
         collection.insert(joindate);
+
+        var uidString = "" + uid;
+        var group  = {
+            "_key" : "group:registered-users:members",
+            "value" : uidString,
+            "score" : 1495731011853.0
+        };
+        collection.insert(group);
     }
         
 

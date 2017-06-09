@@ -12,7 +12,7 @@ MongoClient.connect(url, function(err, db) {
     var contents, id;
     var collection = db.collection(collectionName);
 
-    for (var i = 1; i <= 200; i++) {
+    for (var i = 1; i <= 100; i++) {
 
         var uid  = 100000 + i;
         var _key = "user:" + uid;
@@ -39,12 +39,12 @@ MongoClient.connect(url, function(err, db) {
         };
         collection.removeOne({"_key" : "userslug:uid", "value" : username});
 
-        var members  = {
-            "_key" : "group:registered-users:members",
-            "value" : uid,
-            "score" : 1495731105284.0
-        };
-        collection.removeOne({"_key" : "group:registered-users:members", "value" : uid});
+        // var members  = {
+        //     "_key" : "group:registered-users:members",
+        //     "value" : uid,
+        //     "score" : 1495731105284.0
+        // };
+        // collection.removeOne({"_key" : "group:registered-users:members", "value" : uid});
 
 
         var joindate  = {
@@ -53,6 +53,15 @@ MongoClient.connect(url, function(err, db) {
             "score" : 1495731011853.0
         };
         collection.removeOne({"_key" : "users:joindate", "value" : uid});
+
+
+        var uidString = "" + uid;
+        var group  = {
+            "_key" : "group:registered-users:members",
+            "value" : uidString,
+            "score" : 1495731011853.0
+        };
+        collection.removeOne({"_key" : "group:registered-users:members", "value" : uidString});
     }
 
     db.close();
